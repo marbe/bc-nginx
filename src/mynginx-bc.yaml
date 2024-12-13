@@ -1,0 +1,25 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mynginx
+  labels:
+    app: mynginx
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/marbe/bc-nginx
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      from:
+        kind: ImageStreamTag
+        name: nginx-122:1-94
+  output:
+    to:
+      kind: ImageStreamTag
+      name: mynginx:latest
+  triggers:
+  - type: ImageChange

@@ -1,0 +1,21 @@
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: nginx-122
+spec:
+  tags:
+  - from:
+      kind: DockerImage
+      name: registry.access.redhat.com/ubi8/nginx-122:1-94
+    name: 1-94
+    referencePolicy:
+      type: Source
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: mynginx
+spec:
+  lookupPolicy:
+    local: true
